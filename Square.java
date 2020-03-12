@@ -39,19 +39,16 @@ public class Square
 
     /*public void moveTo(button s, button e) //for button start and button end
     {
-        e.setIcon(s.getImage());
-        s.setIcon(new ImageIcon("LilyPad.png"));
-
-        if (e.getIcon == "RedFrog2.png")
+        if (s.getIcon == "RedFrog2.png")
         {
             e.setIcon(new ImageIcon("RedFrog.png"));
         }
-        if (e.getIcon == "GreenFrog2.png")
+        else if (s.getIcon == "GreenFrog2.png")
         {
             e.setIcon(new ImageIcon("GreenFrog.png"));
         }
+        s.setIcon(new ImageIcon("LilyPad.png"));
     }*/
-
 
     public int getIndex()
     {
@@ -73,10 +70,15 @@ public class Square
         return type;
     }
 
-    /*public ImageIcon getImage()
+    public ImageIcon getImage()
     {
         return image;
-    }*/
+    }
+
+    public void setImage(String s)
+    {
+        button.setIcon(new ImageIcon(s));     
+    }
 
     public JButton getButton()
     {

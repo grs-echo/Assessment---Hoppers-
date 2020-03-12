@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Board //implements ActionListener
+public class Board implements ActionListener
 {
     private JFrame Hoppers;
     private JPanel panel;
-    private Square[] buttons;     
+    private Square[] buttons;
+    private Square working, current, target;     
     private GridLayout layout;
-    //private boolean clicked = false;
+    private boolean clicked = false;
     //private JButton current, target;
 
     public Board()
@@ -42,40 +43,100 @@ public class Board //implements ActionListener
             {
                 buttons[i] = new Square ('r', i);
             }
-            //(buttons[i].getButton()).addActionListener(this);
+            (buttons[i].getButton()).addActionListener(this);
             panel.add(buttons[i].getButton());
         }
-
+        Hoppers.setVisible(true);
+    }
         //3.1 - make sure it can detect when Squares are clicked - should be done, hopefully
         //3.3 - make sure that if a user clicks a Square when already clicking on a Square, it moves the piece from A to B using moveTo - since it relies on 3.2, probably not
         //5 - determine when the game is won and add support for multiple levels
 
-        /*
-        public void actionPerformed(ActionEvent e)
+        
+    /*public void actionPerformed(ActionEvent e)
+    {
+        if (clicked == false)
         {
-            if (clicked == false)
+            if (e.getSource().getIcon() == "RedFrog.png")
             {
-                if (e.getIcon() == "RedFrog.png")           //e? this? not sure, can't see e or this being used in any online examples
-                {
-                    e.setIcon(new ImageIcon("RedFrog2.png"));
-                }
-                else if (e.getIcon() == "GreenFrog.png")
-                {
-                    e.setIcon(newImageIcon("GreenFrog2.png"));
-                }
-                current = e;
-                clicked = true;
-                return;
+                e.getSource().setIcon(new ImageIcon("RedFrog2.png"));
             }
-            if (clicked == true)
+            else if (e.getSource().getIcon() == "GreenFrog.png")
             {
-                target = e;
+                e.getSource().setIcon(new ImageIcon("GreenFrog2.png"));
+            }
+            current = e.getSource().getButton();
+            clicked = true;
+            return;
+        }
+        else if (clicked == true && e.getSource().getIcon() == "LilyPad.png")
+        {
+            target = e.getSource().getButton();
+            /*if (target.getIndex() == current.getIndex())
+            {
+                if (current.getIcon() == "RedFrog2.png")
+                {
+                    current.setIcon(new ImageIcon("RedFrog.png"));
+                }
+                else if (current.getIcon() == "GreenFrog2.png")
+                {
+                    current.setIcon(new ImageIcon("GreenFrog.png"));
+                }
+            }
+            else
+            {
                 moveTo(current, target);
-                clicked = false;
+            }
+            clicked = false;
+        }
+    }*/
+    public void actionPerformed(ActionEvent e)
+    {
+        for (int i=0; i<buttons.length; i++)
+        {
+            if (e.getSource().equals(buttons[i].getButton()))         //e.getSource gets the button you click
+            {
+                working = buttons[i];                   //working becomes the square corresponding to the button you click        
             }
         }
-        */
-
-        Hoppers.setVisible(true);
+        if (clicked == false)
+        {
+            // if this square is a red frog
+            if (working.getType() == 'r')
+            {
+                // ...change the image of the square to the highlighted red frog
+                working.setImage("RedFrog2.png");
+            }
+            
+            
+            
+            else if (working.getType() == 'g')
+            {
+                working.setImage("GreenFrog2.png");
+            }
+            current = working;
+            clicked = true;
+            return;
+        }
+       /* else if (clicked == true && working.getType() == 'p')
+        {
+            target = working;
+            if (target.getIndex() == current.getIndex())
+            {
+                if (current.getIcon() == "RedFrog2.png")
+                {
+                    current.setIcon(new ImageIcon("RedFrog.png"));
+                }
+                else if (current.getIcon() == "GreenFrog2.png")
+                {
+                    current.setIcon(new ImageIcon("GreenFrog.png"));
+                }
+            }
+            else
+            {
+                moveTo(current, target);
+            }
+            clicked = false;
+        }*/
     }
 }
