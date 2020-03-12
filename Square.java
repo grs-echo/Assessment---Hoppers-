@@ -37,7 +37,7 @@ public class Square
 
     //3.2 - write a moveTo method that can be enacted on a Square and take another Square as a parameter - maybe?
 
-    /*public void moveTo(button s, button e) //for button start and button end
+    /*public void moveTo(Square dest) //for button start and button end
     {
         if (s.getIcon == "RedFrog2.png")
         {
@@ -50,6 +50,21 @@ public class Square
         s.setIcon(new ImageIcon("LilyPad.png"));
     }*/
 
+    /*public void moveTo(Square dest) //for button start and button end
+    {
+        if (type == 'r')
+        {
+            e.setImage("RedFrog.png");
+            e.setType('r');
+        }
+        else if (type == 'g')
+        {
+            e.setImage("GreenFrog.png");
+            e.setType('r');
+        }
+        setImage("LilyPad.png");
+        setType('p');
+    }*/
     public int getIndex()
     {
         return index;
@@ -69,6 +84,11 @@ public class Square
     {
         return type;
     }
+
+    /*public void setType(char s)
+    {
+        type = s;
+    }*/
 
     public ImageIcon getImage()
     {

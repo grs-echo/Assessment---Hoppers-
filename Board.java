@@ -96,7 +96,7 @@ public class Board implements ActionListener
             }
             else
             {
-                moveTo(current, target);
+                current.moveTo(target);
             }
             clicked = false;
         }*/
