@@ -11,12 +11,12 @@ public class Board implements ActionListener
     private Square working, current, target;     
     private GridLayout layout;
     private boolean clicked = false;
-    //private JButton current, target;
+    
 
     public Board()
     {
         Hoppers = new JFrame("Hoppers!");
-        Hoppers.setSize(700,700);
+        Hoppers.setSize(750,750);
         panel = new JPanel();
         Hoppers.setContentPane(panel);
         GridLayout layout = new GridLayout(5,5);
@@ -52,44 +52,6 @@ public class Board implements ActionListener
         //3.3 - make sure that if a user clicks a Square when already clicking on a Square, it moves the piece from A to B using moveTo - since it relies on 3.2, probably not
         //5 - determine when the game is won and add support for multiple levels
 
-        
-    /*public void actionPerformed(ActionEvent e)
-    {
-        if (clicked == false)
-        {
-            if (e.getSource().getIcon() == "RedFrog.png")
-            {
-                e.getSource().setIcon(new ImageIcon("RedFrog2.png"));
-            }
-            else if (e.getSource().getIcon() == "GreenFrog.png")
-            {
-                e.getSource().setIcon(new ImageIcon("GreenFrog2.png"));
-            }
-            current = e.getSource().getButton();
-            clicked = true;
-            return;
-        }
-        else if (clicked == true && e.getSource().getIcon() == "LilyPad.png")
-        {
-            target = e.getSource().getButton();
-            /*if (target.getIndex() == current.getIndex())
-            {
-                if (current.getIcon() == "RedFrog2.png")
-                {
-                    current.setIcon(new ImageIcon("RedFrog.png"));
-                }
-                else if (current.getIcon() == "GreenFrog2.png")
-                {
-                    current.setIcon(new ImageIcon("GreenFrog.png"));
-                }
-            }
-            else
-            {
-                moveTo(current, target);
-            }
-            clicked = false;
-        }
-    }*/
     public void actionPerformed(ActionEvent e)
     {
         for (int i=0; i<buttons.length; i++)
@@ -118,7 +80,7 @@ public class Board implements ActionListener
             clicked = true;
             return;
         }
-       /* else if (clicked == true && working.getType() == 'p')
+       /*else if (clicked == true && working.getType() == 'p')
         {
             target = working;
             if (target.getIndex() == current.getIndex())
