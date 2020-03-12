@@ -10,8 +10,6 @@ public class Board implements ActionListener
     private Square[] buttons;
     private Square working, current, target;     
     private GridLayout layout;
-    private boolean clicked = false;
-    
 
     public Board()
     {
@@ -35,6 +33,7 @@ public class Board implements ActionListener
                 buttons[i] = new Square('w', i);
             }
 
+            //level support
             if (i==6 || i==8 || i==12 || i==20 || i==24)
             {
                 buttons[i] = new Square('g', i);
@@ -48,57 +47,59 @@ public class Board implements ActionListener
         }
         Hoppers.setVisible(true);
     }
-        //3.1 - make sure it can detect when Squares are clicked - should be done, hopefully
-        //3.3 - make sure that if a user clicks a Square when already clicking on a Square, it moves the piece from A to B using moveTo - since it relies on 3.2, probably not
-        //5 - determine when the game is won and add support for multiple levels
+
 
     public void actionPerformed(ActionEvent e)
     {
         for (int i=0; i<buttons.length; i++)
         {
-            if (e.getSource().equals(buttons[i].getButton()))         //e.getSource gets the button you click
+            if (e.getSource().equals(buttons[i].getButton()))           //e.getSource gets the button you click
             {
-                working = buttons[i];                   //working becomes the square corresponding to the button you click        
+                working = buttons[i];                                   //working becomes the square corresponding to the button you click        
             }
         }
-        if (clicked == false)
+
+        if (current == null)                                            //if nothing is currently selected
         {
-            // if this square is a red frog
-            if (working.getType() == 'r')
+            if (working.getType() == 'r')                               //if this square is a red frog
             {
-                // ...change the image of the square to the highlighted red frog
-                working.setImage("RedFrog2.png");
+                working.setImage("RedFrog2.png");                       // ...change the image of the square to the highlighted red frog
             }
-            
-            
-            
             else if (working.getType() == 'g')
             {
                 working.setImage("GreenFrog2.png");
             }
-            current = working;
-            clicked = true;
-            return;
-        }
-       /*else if (clicked == true && working.getType() == 'p')
-        {
-            target = working;
-            if (target.getIndex() == current.getIndex())
-            {
-                if (current.getIcon() == "RedFrog2.png")
-                {
-                    current.setIcon(new ImageIcon("RedFrog.png"));
-                }
-                else if (current.getIcon() == "GreenFrog2.png")
-                {
-                    current.setIcon(new ImageIcon("GreenFrog.png"));
-                }
-            }
             else
             {
-                current.moveTo(target);
+                working = null;
             }
-            clicked = false;
-        }*/
+            current = working;
+            return;
+        }
+
+        else if (working == current)                                    //the same square has been selected twice
+        {
+            if (current.getType() == 'r')
+            {
+                current.setImage("RedFrog.png");
+            }
+            else if (current.getType() == 'g')
+            {
+                current.setImage("GreenFrog.png");
+            }
+            current = null;
+            target = null;
+        }
+
+        else if (current != null && working.getType() == 'p')           //the second clicked square is empty
+        {
+            //current.legalityCheck(target)
+            target = working;
+            current.moveTo(target);
+            current = null;
+            target = null;
+        }
     }
+    //victory message
+    //level select
 }

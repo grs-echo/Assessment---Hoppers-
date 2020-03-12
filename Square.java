@@ -35,36 +35,34 @@ public class Square
         x=x-1;
     }
 
-    //3.2 - write a moveTo method that can be enacted on a Square and take another Square as a parameter - maybe?
 
-    /*public void moveTo(Square dest) //for button start and button end
-    {
-        if (s.getIcon == "RedFrog2.png")
-        {
-            e.setIcon(new ImageIcon("RedFrog.png"));
-        }
-        else if (s.getIcon == "GreenFrog2.png")
-        {
-            e.setIcon(new ImageIcon("GreenFrog.png"));
-        }
-        s.setIcon(new ImageIcon("LilyPad.png"));
-    }*/
-
-    /*public void moveTo(Square dest) //for button start and button end
+    public void moveTo(Square dest) //for button start and button end
     {
         if (type == 'r')
         {
-            e.setImage("RedFrog.png");
-            e.setType('r');
+            dest.setImage("RedFrog.png");
+            dest.setType('r');
         }
         else if (type == 'g')
         {
-            e.setImage("GreenFrog.png");
-            e.setType('r');
+            dest.setImage("GreenFrog.png");
+            dest.setType('g');
         }
         setImage("LilyPad.png");
         setType('p');
-    }*/
+        /*delete the one inbetween*/
+    }
+
+    /*public void legalityCheck(Square dest)
+    {
+        (pseudocode for now)
+        check the x coordinates - are they the same
+        check the y coordinates - are they the same
+        if they aren't the same, are both of them different by a modulus of two
+        if none of these, invalid move, never move target to working (working = null)
+    }
+    */
+
     public int getIndex()
     {
         return index;
@@ -85,10 +83,10 @@ public class Square
         return type;
     }
 
-    /*public void setType(char s)
+    public void setType(char s)
     {
         type = s;
-    }*/
+    }
 
     public ImageIcon getImage()
     {
