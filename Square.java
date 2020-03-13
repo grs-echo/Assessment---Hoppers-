@@ -26,11 +26,9 @@ public class Square
         index = i;
 
         y = index / 5;      //y represents the y coordinates of the square with a specific index value
-        y = 4 - y;          //this isn't really necessary, but it works to bring the value of y more in line with the human understanding of coordinates (without this it would decrease as index increased)
-        y = y + 1;
+        y = 4 - y;          //this isn't really necessary, but it works to bring the value of y more in line with the human understanding of coordinates (without this it would decrease as index increases)
 
-        x = index - y*5;    //x represents the x coordinates
-        x = x + 1;
+        x = index % 5;      //x represents the x coordinates; x is index modulo 5, the remainder when index is divided by 5
     }
 
 

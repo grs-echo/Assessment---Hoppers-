@@ -3,26 +3,26 @@ import java.awt.*;          //import layout managers (FlowLayout, GridLayout, Bo
 import java.awt.event.*;    //need this to integrate listeners
 
 
-public class Board implements ActionListener    //this class uses listeners, so this addition needs to be here for the class definition
+public class Board implements ActionListener, Keylistener   //this class uses listeners, so this addition needs to be here for the class definition
 {
-    private int victoryCount;                   //an integer value to see if the victory condition is triggered
-    private JFrame hoppers;                     //a window in the Host OS
-    private JPanel panel;                       //a container to hold the components of the window
-    private Square[] buttons;                   //an array of Squares as established in Square.java
-    private Square working, current, target;    //Square variables as established in Square.java
-    private GridLayout layout;                  //a layout manager that fixes components into an nxm matrix
-    private JOptionPane victoryMessage;         //a dialogue window only opened if the victory condition is met
+    private int victoryCount;                               //an integer value to see if the victory condition is triggered
+    private JFrame hoppers;                                 //a window in the Host OS
+    private JPanel panel;                                   //a container to hold the components of the window
+    private Square[] buttons;                               //an array of Squares as established in Square.java
+    private Square working, current, target;                //Square variables as established in Square.java
+    private GridLayout layout;                              //a layout manager that fixes components into an nxm matrix
+    private JOptionPane victoryMessage;                     //a dialogue window only opened if the victory condition is met
 
     public Board()
     {
         hoppers = new JFrame("Hoppers!");       
-        hoppers.setSize(750,750);               //establishes hoppers as a new JFrame called 'Hoppers!' and sets its size
+        hoppers.setSize(750,750);                                   //establishes hoppers as a new JFrame called 'Hoppers!' and sets its size
         panel = new JPanel();
-        hoppers.setContentPane(panel);          //establishes panel as a new JPanel and sets it to the hoppers JFrame
+        hoppers.setContentPane(panel);                              //establishes panel as a new JPanel and sets it to the hoppers JFrame
         GridLayout layout = new GridLayout(5,5);
-        panel.setLayout(layout);                //establishes layout as a new GridLayout and sets it to the panel panel
+        panel.setLayout(layout);                                    //establishes layout as a new GridLayout and sets it to the panel panel
         hoppers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //terminates application when the window is closed
-        buttons = new Square[25];               //creates buttons as an array of 25 squares
+        buttons = new Square[25];                                   //creates buttons as an array of 25 squares
 
         for (int i=0; i<buttons.length; i++)
         {
@@ -98,8 +98,8 @@ public class Board implements ActionListener    //this class uses listeners, so 
         {
             if (buttons[getMiddle(current.getIndex(), working.getIndex())].getType() == 'g')    //if the square in the middle of the current square and the target square has a green frog. Because of the way this is defined, jumping over a red frog is an illegal move
             {
-                //if (current.legalityCheck(working))
-                //{
+                if (current.legalityCheck(working))
+                {
                     target = working;
                     current.moveTo(target);                                                     //perform the moveTo method on current using target as a parameter
                     buttons[getMiddle(current.getIndex(), working.getIndex())].setToBlank();    //set the square in the middle of the two squares being operated on to a regular lilypad
@@ -129,11 +129,11 @@ public class Board implements ActionListener    //this class uses listeners, so 
                     {
                         victoryCount = 0;                           //if not, set victoryCount back to 0 so it can be recalculated on the next movement
                     }
-                //}
-                //else
-                //{
-                //   working = null;
-                //}
+                }
+                else
+                {
+                   working = null;
+                }
             }
             else
             {
