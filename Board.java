@@ -5,11 +5,13 @@ import java.awt.event.*;
 
 public class Board implements ActionListener
 {
+    private int victoryCount;
     private JFrame Hoppers;
     private JPanel panel;
     private Square[] buttons;
     private Square working, current, target;     
     private GridLayout layout;
+    private JOptionPane victoryMessage;
 
     public Board()
     {
@@ -95,7 +97,7 @@ public class Board implements ActionListener
         {
             if (buttons[getMiddle(current.getIndex(), working.getIndex())].getType() == 'g')
             {
-                //if (current.legalityCheck(target) == true)
+                //if (current.legalityCheck(target))
                 //{
                     target = working;
                     current.moveTo(target);
@@ -103,6 +105,29 @@ public class Board implements ActionListener
                     buttons[getMiddle(current.getIndex(), working.getIndex())].setType('p');
                     current = null;
                     target = null;
+                    for (int i=0; i<buttons.length; i++)
+                    {
+                        if (buttons[i].getType() == 'r')
+                        {
+                            victoryCount = victoryCount + 1;
+                        }
+                        else if (buttons[i].getType() == 'g')
+                        {
+                            victoryCount = victoryCount + 2;
+                        }
+                        else
+                        {
+                            victoryCount = victoryCount;
+                        }
+                    }
+                    if (victoryCount == 1)
+                    {
+                        victory();
+                    }
+                    else
+                    {
+                        victoryCount = 0;
+                    }
                 //}
                 //else
                 //{
@@ -123,4 +148,8 @@ public class Board implements ActionListener
     }
     //victory message
     //level select
+    public void victory()
+    {
+        JOptionPane.showMessageDialog(Hoppers, "Congratulations, you won!");
+    }
 }
