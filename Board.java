@@ -93,18 +93,33 @@ public class Board implements ActionListener
 
         else if (current != null && working.getType() == 'p')           //the second clicked square is empty
         {
-            if (current.legalityCheck(target) == true)
+            if (buttons[getMiddle(current.getIndex(), working.getIndex())].getType() == 'g')
             {
-            target = working;
-            current.moveTo(target);
-            current = null;
-            target = null;
+                //if (current.legalityCheck(target) == true)
+                //{
+                    target = working;
+                    current.moveTo(target);
+                    buttons[getMiddle(current.getIndex(), working.getIndex())].setImage("LilyPad.png");
+                    buttons[getMiddle(current.getIndex(), working.getIndex())].setType('p');
+                    current = null;
+                    target = null;
+                //}
+                //else
+                //{
+                //    working = null;
+                //}
             }
             else
             {
                 working = null;
             }
         }
+    }
+    public int getMiddle(int a, int b)
+    {
+        a = a + b;
+        a = a / 2;
+        return a;
     }
     //victory message
     //level select

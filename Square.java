@@ -26,13 +26,13 @@ public class Square
         button = new JButton(image);
         button.setIcon(image);
         
-        index=i+1;
+        index = i;
 
-        y = index/5;
-        y=y-1;
+        y = index / 5;
+        y = 4 - y;
         
         x = index - y*5;
-        x=x-1;
+        x= x - 1;
     }
 
 
