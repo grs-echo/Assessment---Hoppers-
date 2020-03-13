@@ -53,15 +53,27 @@ public class Square
         /*delete the one inbetween*/
     }
 
-    /*public void legalityCheck(Square dest)
+    public boolean legalityCheck(Square dest)
     {
-        (pseudocode for now)
+        /*(pseudocode for now)
         check the x coordinates - are they the same
         check the y coordinates - are they the same
         if they aren't the same, are both of them different by a modulus of two
-        if none of these, invalid move, never move target to working (working = null)
+        if none of these, invalid move, never move target to working (working = null)*/
+        if (getX() == dest.getX() || getY() == dest.getY())
+        {
+            return true;
+        }
+        else if (Math.abs(getX() - dest.getX()) == 2 && Math.abs(getY() - dest.getY()) == 2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-    */
+    
 
     public int getIndex()
     {

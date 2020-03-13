@@ -93,11 +93,17 @@ public class Board implements ActionListener
 
         else if (current != null && working.getType() == 'p')           //the second clicked square is empty
         {
-            //current.legalityCheck(target)
+            if (current.legalityCheck(target) == true)
+            {
             target = working;
             current.moveTo(target);
             current = null;
             target = null;
+            }
+            else
+            {
+                working = null;
+            }
         }
     }
     //victory message
