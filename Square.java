@@ -2,7 +2,7 @@ import javax.swing.*;       //import swing classes (JFrame, JPanel, JButton, JTe
 
 public class Square
 {
-    private JButton button;         //A pushable button
+    private JButton button;         //a pushable button
     private char type;              //the 'type' that the square has. An easy way to represent the image that the square has
     private ImageIcon image;        //the picture that the square has
     private int index, x, y;        //numbers to represent the square's position in board
