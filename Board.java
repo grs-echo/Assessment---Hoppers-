@@ -14,6 +14,10 @@ public class Board implements ActionListener, KeyListener   //this class uses li
     private JOptionPane victoryMessage;                     //a dialogue window only opened if the victory condition is met
     private int level;
 
+    private String[] levelButtons;
+    private String answer;
+    private JOptionPane levelSelect;
+
     public Board()
     {
         hoppers = new JFrame("Hoppers!");       
@@ -31,34 +35,14 @@ public class Board implements ActionListener, KeyListener   //this class uses li
 
 
         //level select
-
-        for (int i=0; i<buttons.length; i++)
-        {
-            if ((i%2)==0)                           //the remainder when i is divided by 2 is 0 (even). Because i starts at 0, this will apply to odd numbered tiles instead
-            {
-                buttons[i] = new Square('p', i);    //odd numbered tiles are always lilypads
-            }
-            else                                    //when the index is odd
-            {
-                buttons[i] = new Square('w', i);    //even numbered tiles are always just water
-            }
-
-            //level support
-            if (i==6 || i==8 || i==12 || i==20 || i==24)
-            {
-                buttons[i] = new Square('g', i);        //set the green frogs to the appropriate index values
-            }
-            if (i==22)
-            {
-                buttons[i] = new Square ('r', i);       //set the red frog to the appropriate index value
-            }
-            (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
-            panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
-        }
-        
+        //LevelSelect levelSelect = new LevelSelect(hoppers);
+        levelSelect();
+        //level1();
         //buttons[0].getButton().addKeyListener();
+        //returnToBase();
         hoppers.setVisible(true);   
         hoppers.addKeyListener(this);                      //set the window as visible
+        //LevelSelect levelSelect = new LevelSelect();
     }
 
 
@@ -163,9 +147,15 @@ public class Board implements ActionListener, KeyListener   //this class uses li
     public void victory()
     {
         JOptionPane.showMessageDialog(hoppers, "Congratulations, you won!", "Victory", JOptionPane.PLAIN_MESSAGE);    //a victory message displayed as a popup
-        /*continue, yes or no
-        if yes,  level select
-        if no, exit the program*/
+        int choice = JOptionPane.showOptionDialog(null, "Would you like to play again?", "Replay?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        if (choice == JOptionPane.YES_OPTION)
+        {
+            levelSelect();
+        }
+        if (choice == JOptionPane.NO_OPTION)
+        {
+            System.exit(0);
+        }
     }
 
     public void keyReleased (KeyEvent e)
@@ -213,5 +203,71 @@ public class Board implements ActionListener, KeyListener   //this class uses li
             level4();
         else
             return;*/
+    }
+    
+    public void levelSelect()
+    {
+        levelButtons = new String[4];
+
+        for (int i=0; i<levelButtons.length; i++)
+        {
+            levelButtons[i] = ("Level " + (i+1));
+        }
+
+        int choice = JOptionPane.showOptionDialog(null, "Please select your level.", "Level Select", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, levelButtons, null);
+        //parent frame, message, title, message type, icon, options, initial value
+        if (choice == 0)
+        {
+            level1();
+        }
+        /*if (choice == 1)
+        {
+            level2();
+        }
+        if (choice == 2)
+        {
+            level3();
+        }
+        if (choice == 3)
+        {
+            level4();
+        }*/
+        /*public void actionPerformed(ActionEvent e)
+        {
+            System.out.println("Yee");
+        }*/
+    }
+    public void level1()
+    {
+        returnToBase();
+        for (int i=0; i<buttons.length; i++)
+        {
+            if (i==6 || i==8 || i==12 || i==20 || i==24)
+            {
+                buttons[i] = new Square('g', i);        //set the green frogs to the appropriate index values
+            }
+            if (i==22)
+            {
+                buttons[i] = new Square ('r', i);       //set the red frog to the appropriate index value
+            }
+            (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
+            panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+        }
+    }
+
+    public void returnToBase()
+    {
+        panel.removeAll();
+        for (int i=0; i<buttons.length; i++)
+        {
+            if ((i%2)==0)                           //the remainder when i is divided by 2 is 0 (even). Because i starts at 0, this will apply to odd numbered tiles instead
+            {
+                buttons[i] = new Square('p', i);    //odd numbered tiles are always lilypads
+            }
+            else                                    //when the index is odd
+            {
+                buttons[i] = new Square('w', i);    //even numbered tiles are always just water
+            }
+        }
     }
 }
