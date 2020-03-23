@@ -29,13 +29,7 @@ public class Board implements ActionListener               //this class uses lis
         hoppers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //terminates application when the window is closed
         buttons = new Square[25];                                   //creates buttons as an array of 25 squares
 
-        //level select
-        //LevelSelect levelSelect = new LevelSelect(hoppers);
         levelSelect();
-        //level1();
-        //returnToBase();
-        hoppers.setVisible(true);                                   //set the window as visible
-        //LevelSelect levelSelect = new LevelSelect();
     }
 
 
@@ -139,8 +133,8 @@ public class Board implements ActionListener               //this class uses lis
 
     public void victory()
     {
-        JOptionPane.showMessageDialog(hoppers, "Congratulations, you won!", "Victory", JOptionPane.PLAIN_MESSAGE);    //a victory message displayed as a popup
-        int choice = JOptionPane.showOptionDialog(null, "Would you like to play again?", "Replay?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+        JOptionPane.showMessageDialog(hoppers, "Congratulations, you won!", "Victory", JOptionPane.PLAIN_MESSAGE);                                                                          //a victory message displayed as a popup
+        int choice = JOptionPane.showOptionDialog(null, "Would you like to play again?", "Replay?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);             //parent frame, message, title, message type, icon, options, initial value
         if (choice == JOptionPane.YES_OPTION)
         {
             levelSelect();
@@ -160,8 +154,7 @@ public class Board implements ActionListener               //this class uses lis
             levelButtons[i] = ("Level " + (i+1));
         }
 
-        int choice = JOptionPane.showOptionDialog(null, "Please select your level.", "Level Select", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, levelButtons, null);
-        //parent frame, message, title, message type, icon, options, initial value
+        int choice = JOptionPane.showOptionDialog(null, "Please select your level.", "Level Select", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, levelButtons, null);      //parent frame, message, title, message type, icon, options, initial value
         if (choice == 0)
         {
             level1();
@@ -195,6 +188,7 @@ public class Board implements ActionListener               //this class uses lis
             }
             (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
             panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+            hoppers.setVisible(true);
         }
     }
 
@@ -213,6 +207,7 @@ public class Board implements ActionListener               //this class uses lis
             }
             (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
             panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+            hoppers.setVisible(true);
         }
     }
 
@@ -231,6 +226,7 @@ public class Board implements ActionListener               //this class uses lis
             }
             (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
             panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+            hoppers.setVisible(true);
         }
     }
 
@@ -250,6 +246,7 @@ public class Board implements ActionListener               //this class uses lis
             }
             (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
             panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+            hoppers.setVisible(true);
         }
     }
 

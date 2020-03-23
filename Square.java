@@ -13,15 +13,15 @@ public class Square
         type=c;
         
         if (type=='w')
-            image = new ImageIcon("Water.png");     //w is the type letter corresponding to water
+            image = new ImageIcon("Water.png");         //w is the type letter corresponding to water
         if (type=='g')
-            image = new ImageIcon("GreenFrog.png"); //g is the type letter corresponding to a green frog
+            image = new ImageIcon("GreenFrog.png");     //g is the type letter corresponding to a green frog
         if (type=='r')
-            image = new ImageIcon("RedFrog.png");   //r is the type letter corresponding to a red frog
+            image = new ImageIcon("RedFrog.png");       //r is the type letter corresponding to a red frog
         if (type=='p')
-            image = new ImageIcon("LilyPad.png");   //p is the type letter corresponding to a lilypad
+            image = new ImageIcon("LilyPad.png");       //p is the type letter corresponding to a lilypad
         button = new JButton(image);
-        button.setIcon(image);                      //the button takes the correct image for its type
+        button.setIcon(image);                          //the button takes the correct image for its type
         
         index = i;
 
@@ -63,7 +63,7 @@ public class Square
             else
                 return false;
         }
-        else if (Math.abs(getX() - dest.getX()) == 2 && Math.abs(getY() - dest.getY()) == 2)    //this is to represent a diagonal movement
+        else if (Math.abs(getX() - dest.getX()) == 2 && Math.abs(getY() - dest.getY()) == 2)    //this is to represent a diagonal movement. To be diagonal from each other, square A and square B need to have both their x and y coordinates be 2 apart
         {
             return true;
         }
