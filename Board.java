@@ -3,7 +3,7 @@ import java.awt.*;          //import layout managers (FlowLayout, GridLayout, Bo
 import java.awt.event.*;    //need this to integrate listeners
 
 
-public class Board implements ActionListener, KeyListener   //this class uses listeners, so this addition needs to be here for the class definition
+public class Board implements ActionListener               //this class uses listeners, so this addition needs to be here for the class definition
 {
     private int victoryCount;                               //an integer value to see if the victory condition is triggered
     private JFrame hoppers;                                 //a window in the Host OS
@@ -28,20 +28,13 @@ public class Board implements ActionListener, KeyListener   //this class uses li
         panel.setLayout(layout);                                    //establishes layout as a new GridLayout and sets it to the panel panel
         hoppers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //terminates application when the window is closed
         buttons = new Square[25];                                   //creates buttons as an array of 25 squares
-        
-        //panel.setFocusable(true);                                 //this is necessary to allow a KeyListener to be used here
-        //panel.requestFocus();
-        //hoppers.addKeyListener(this);
-
 
         //level select
         //LevelSelect levelSelect = new LevelSelect(hoppers);
         levelSelect();
         //level1();
-        //buttons[0].getButton().addKeyListener();
         //returnToBase();
-        hoppers.setVisible(true);   
-        hoppers.addKeyListener(this);                      //set the window as visible
+        hoppers.setVisible(true);                                   //set the window as visible
         //LevelSelect levelSelect = new LevelSelect();
     }
 
@@ -143,7 +136,7 @@ public class Board implements ActionListener, KeyListener   //this class uses li
         a = a / 2;
         return a;                                               //an easy way to calculate the middle of two numbers
     }
-    //level select
+
     public void victory()
     {
         JOptionPane.showMessageDialog(hoppers, "Congratulations, you won!", "Victory", JOptionPane.PLAIN_MESSAGE);    //a victory message displayed as a popup
@@ -158,53 +151,6 @@ public class Board implements ActionListener, KeyListener   //this class uses li
         }
     }
 
-    public void keyReleased (KeyEvent e)
-    {
-        level = e.getKeyChar();
-        System.out.println("hi");
-        /*if (level == 'a')
-            level1();
-        else if (level == 'b')
-            level2();
-        else if (level == 'c')
-            level3();
-        else if (level == 'd')
-            level4();
-        else
-            return;*/
-    }
-
-    public void keyPressed (KeyEvent e)
-    {
-        level = e.getKeyChar();
-        System.out.println("hi");
-        /*if (level == 'a')
-            level1();
-        else if (level == 'b')
-            level2();
-        else if (level == 'c')
-            level3();
-        else if (level == 'd')
-            level4();
-        else
-            return;*/
-    }
-    public void keyTyped (KeyEvent e)
-    {
-        level = e.getKeyChar();
-        System.out.println("hi");
-        /*if (level == 'a')
-            level1();
-        else if (level == 'b')
-            level2();
-        else if (level == 'c')
-            level3();
-        else if (level == 'd')
-            level4();
-        else
-            return;*/
-    }
-    
     public void levelSelect()
     {
         levelButtons = new String[4];
@@ -220,7 +166,7 @@ public class Board implements ActionListener, KeyListener   //this class uses li
         {
             level1();
         }
-        /*if (choice == 1)
+        if (choice == 1)
         {
             level2();
         }
@@ -231,18 +177,70 @@ public class Board implements ActionListener, KeyListener   //this class uses li
         if (choice == 3)
         {
             level4();
-        }*/
-        /*public void actionPerformed(ActionEvent e)
-        {
-            System.out.println("Yee");
-        }*/
+        }
     }
+    
     public void level1()
     {
         returnToBase();
         for (int i=0; i<buttons.length; i++)
         {
             if (i==6 || i==8 || i==12 || i==20 || i==24)
+            {
+                buttons[i] = new Square('g', i);        //set the green frogs to the appropriate index values
+            }
+            if (i==22)
+            {
+                buttons[i] = new Square ('r', i);       //set the red frog to the appropriate index value
+            }
+            (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
+            panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+        }
+    }
+
+    public void level2()
+    {
+        returnToBase();
+        for (int i=0; i<buttons.length; i++)
+        {
+            if (i==4 || i==6 || i==8 || i==12 || i==16 || i==20)
+            {
+                buttons[i] = new Square('g', i);        //set the green frogs to the appropriate index values
+            }
+            if (i==24)
+            {
+                buttons[i] = new Square ('r', i);       //set the red frog to the appropriate index value
+            }
+            (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
+            panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+        }
+    }
+
+    public void level3()
+    {
+        returnToBase();
+        for (int i=0; i<buttons.length; i++)
+        {
+            if (i==2 || i==6 || i==8 || i==10 || i==12 || i==16)
+            {
+                buttons[i] = new Square('g', i);        //set the green frogs to the appropriate index values
+            }
+            if (i==24)
+            {
+                buttons[i] = new Square ('r', i);       //set the red frog to the appropriate index value
+            }
+            (buttons[i].getButton()).addActionListener(this);   //need to add an ActionListener (listener for buttons) to each Square in the array. 'this' is in reference to the instance currently being operated on
+            panel.add(buttons[i].getButton());                  //add the buttons from the array of Squares to the panel so they can be clicked on
+        }
+    }
+
+    public void level4()
+    {
+        returnToBase();
+        for (int i=0; i<buttons.length; i++)
+        {
+            
+            if (i==6 || i==8 || i==14 || i==16 || i==20)
             {
                 buttons[i] = new Square('g', i);        //set the green frogs to the appropriate index values
             }
