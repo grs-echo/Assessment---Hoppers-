@@ -5,7 +5,7 @@ public class Square
     private JButton button;         //a pushable button
     private char type;              //the 'type' that the square has. An easy way to represent the image that the square has
     private ImageIcon image;        //the picture that the square has
-    private int index, x, y;        //numbers to represent the square's position in board
+    private int index, x, y;        //numbers to represent the square's position in 'board'
 
 
     public Square(char c, int i)    //the square constructor requires the type and its index in the array from Board
@@ -37,28 +37,28 @@ public class Square
         if (type == 'r')
         {
             dest.setImage("RedFrog.png");
-            dest.setType('r');              //if the type of the square being acted on is r, the destination would need to be a red frog 
+            dest.setType('r');              //if the type of the square being acted on is r, the destination would need to become a red frog 
         }
         else if (type == 'g')
         {
             dest.setImage("GreenFrog.png");
-            dest.setType('g');              //if the type of the square being acted on is g, the destination would need to be a green frog
+            dest.setType('g');              //if the type of the square being acted on is g, the destination would need to become a green frog
         }
         setToBlank();                       //the original square being acted on needs to be made blank (ie a normal lilypad)
     }
 
     public boolean legalityCheck(Square dest)
     {
-        if (getX() == dest.getX())                      //if the x coordinates are the same
+        if (getX() == dest.getX())                      //if the x coordinates are the same...
         {
-            if (Math.abs(getY() - dest.getY()) == 4)    //the only valid move is if the y values of the start and destination are a magnitude of 4 squares apart (this is what Math.abs calculates)
+            if (Math.abs(getY() - dest.getY()) == 4)    //...the only valid move is if the y values of the start and destination are a magnitude of 4 squares apart (this is what Math.abs calculates)
                 return true;
             else
                 return false;
         }
-        else if (getY() == dest.getY())                 //if the y coordinates are the same
+        else if (getY() == dest.getY())                 //if the y coordinates are the same...
         {
-            if (Math.abs(getX() - dest.getX()) == 4)    //the only valid move is if the x values of the start and destination are a magnitude of 4 squares apart (this is what Math.abs calculates)
+            if (Math.abs(getX() - dest.getX()) == 4)    //...the only valid move is if the x values of the start and destination are a magnitude of 4 squares apart (this is what Math.abs calculates)
                 return true;
             else
                 return false;
